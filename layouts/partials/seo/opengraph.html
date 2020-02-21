@@ -4,9 +4,13 @@
 {{- with .Description | default .Params.subtitle | default .Summary }}
 <meta property="og:description" content="{{ . }}">
 {{- end }}
+{{ if .Params.thumbnail }}
+<meta property="og:image" content="{{ .Params.thumbnail | absURL }}" />
+{{ else }}
 {{- with .Params.share_img | default .Params.image | default .Site.Params.logo }}
 <meta property="og:image" content="{{ . | absURL }}" />
 {{- end }}
+{{ end }}
 {{- with .Site.Params.fb_app_id }}
 <meta property="fb:app_id" content="{{ . }}" />
 {{- end }}
